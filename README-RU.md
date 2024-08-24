@@ -32,7 +32,7 @@ repo sync --force-sync --optimized-fetch --no-tags --no-clone-bundle --prune -j$
 ```
 
 
-### После синхронизации исходного кода, сгенерируйте приватные ключи для подписывания сборки:
+### После синхронизации исходного кода, сгенерируйте приватные ключи для подписывания сборки. Важно: ключи должны быть сгенерированы без пароля
 
 ```bash
 subject='/C=US/ST=State/L=City/O=Android/OU=Android/CN=Android/emailAddress=email@example.com'

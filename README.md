@@ -32,7 +32,7 @@ repo init -u https://github.com/PixelOS-AOSP/manifest.git -b fourteen --git-lfs
 repo sync --force-sync --optimized-fetch --no-tags --no-clone-bundle --prune -j$(nproc --all)
 ```
 
-### After synchronizing the source code, generate private keys to sign the build:
+### After synchronizing the source code, generate private keys to sign the build. Important: the keys must be generated without a password
 
 ```bash
 subject='/C=US/ST=State/L=City/O=Android/OU=Android/CN=Android/emailAddress=email@example.com'
