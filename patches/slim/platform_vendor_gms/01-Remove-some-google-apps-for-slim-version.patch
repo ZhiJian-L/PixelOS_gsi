@@ -4,21 +4,21 @@ Date: Wed Jul 24 20:52:45 2024 +0300
 Subject: [PATCH] Remove some google apps for slim version
 
 diff --git a/common/common-vendor.mk b/common/common-vendor.mk
-index 8532264..2e31492 100644
+index 8c236bc..9a82ec9 100644
 --- a/common/common-vendor.mk
 +++ b/common/common-vendor.mk
-@@ -220,25 +220,18 @@ PRODUCT_PACKAGES += \
+@@ -223,25 +223,18 @@ PRODUCT_PACKAGES += \
      GoogleTTS \
      LatinIMEGooglePrebuilt \
      LocationHistoryPrebuilt \
 -    Maps \
-     MarkupGoogle \
+     MarkupGoogle_v2 \
      ModuleMetadataGoogle \
      NgaResources \
 -    Photos \
      PixelThemesStub \
      PixelThemesStub2022_and_newer \
-     PrebuiltDeskClockGoogle \
+     PrebuiltDeskClockGoogle_76003530 \
 -    PrebuiltGmail \
      SoundAmplifierPrebuilt \
      SoundPickerPrebuilt \
@@ -27,19 +27,19 @@ index 8532264..2e31492 100644
 -    WallpaperEmojiPrebuilt-v470 \
      WebViewGoogle-Stub \
 -    talkback \
-     AICorePrebuilt \
+     AICorePrebuilt-aicore_20240509.01_RC02 \
 -    AiWallpapers \
 -    AndroidAutoStubPrebuilt \
      ConfigUpdater \
-     DeviceIntelligenceNetworkPrebuilt-v.U.14.playstore \
-     DevicePersonalizationPrebuiltPixel2023-v.U.14.playstore \
-@@ -268,7 +261,6 @@ PRODUCT_PACKAGES += \
+     DeviceIntelligenceNetworkPrebuilt-U.21_playstore_astrea_20240222.00_RC01 \
+     DevicePersonalizationPrebuiltPixel2024-U.21_P24_aiai_20240327.00_RC01 \
+@@ -270,7 +263,6 @@ PRODUCT_PACKAGES += \
      SettingsIntelligenceGooglePrebuilt \
      SetupWizardPrebuilt \
      TurboPrebuilt \
 -    Velvet \
      WallpaperEffect \
-     WeatherPixelPrebuilt \
+     WeatherPixelPrebuilt_24D1 \
      WellbeingPrebuilt \
 
 --
