@@ -35,7 +35,7 @@ repo sync --force-sync --optimized-fetch --no-tags --no-clone-bundle --prune -j$
 ### After synchronizing the source code, generate private keys to sign the build. Important: the keys must be generated without a password
 
 ```bash
-subject='/C=US/ST=State/L=City/O=Android/OU=Android/CN=Android/emailAddress=email@example.com'
+subject='/C=SG/ST=State/L=City/O=Android/OU=Android/CN=Android/emailAddress=limzhijian99@gmail.com'
 for x in releasekey platform shared media networkstack verity otakey testkey sdk_sandbox bluetooth nfc; do \
     ./development/tools/make_key vendor/aosp/signing/keys/$x "$subject"; \
 done
