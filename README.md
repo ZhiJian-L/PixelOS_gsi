@@ -2,37 +2,34 @@ English | [Русский](README-RU.md)
 ### To get started with building PixelOS GSI,
 You'll need to get familiar with [Git and Repo](https://source.android.com/source/using-repo.html) as well as [How to build a GSI](https://github.com/phhusson/treble_experimentations/wiki/How-to-build-a-GSI%3F).
 
-
+## 1. Initializing
 ### Create the directories
 
-As a first step, you'll have to create and enter a folder with the appropriate name
-To do that, run these commands:
-
 ```bash
-mkdir PixelOS
-cd PixelOS
+mkdir -p PixelOS && cd PixelOS
 ```
 
-### To initialize your local repository, run this command:
+### To initialize your local repository
 
 ```bash
 repo init -u https://github.com/PixelOS-AOSP/manifest.git -b fourteen --git-lfs
 ```
  
 
-### Clone the Manifest to add necessary dependencies for gsi:
+### Add necessary dependencies for GSI, by cloning the Manifest below
  
     git clone https://github.com/MisterZtr/treble_manifest.git .repo/local_manifests  -b 14
   
 
-
-### Afterwards, sync the source by running this command:
+## 2. Syncing
+### Sync the source (Force Sync)
 
 ```bash
 repo sync --force-sync --optimized-fetch --no-tags --no-clone-bundle --prune -j$(nproc --all)
 ```
 
-### After synchronizing the source code, generate private keys to sign the build. Important: the keys must be generated without a password
+### Generate Private Key (Run Once)
+After synchronizing the source code, generate private keys to sign the build. Important: the keys must be generated without a password
 
 ```bash
 subject='/C=SG/ST=State/L=City/O=Android/OU=Android/CN=Android/emailAddress=limzhijian99@gmail.com'
@@ -45,20 +42,27 @@ Where:
 C: Country code (e.g., US) ST: State name L: City name O: Organization name OU: Organizational Unit name CN: Common name emailAddress: Your email address
 
 
-### Next, apply patches:
-
-Copy the patches folder to rom folder and in rom folder
-
+### Apply patches (Do this Everything after sync)
+ 
 ```
+# copy required file
+cd PixelOS_gsi/patch/
+./copy_files.sh
+
+# apply patch
+cd PixelOS/
 bash patches/apply-patches.sh .
 ```
 
-## Generating Rom Makefile
-
- Clone this repository and then copy pixel.mk to device/phh/treble in rom folder. Then run the following commands:,
+## 3. Generating Rom Makefile
  
  ```
 cd device/phh/treble
+
+# Apply some changes for generating the AndroidProduct
+git am generate.sh.patch 
+
+# Then generate
 bash generate.sh pixel
  ```
 
@@ -72,19 +76,23 @@ export CCACHE_COMPRESS=1
 export CCACHE_MAXSIZE=50G # 50 GB
 ``` 
 
-## Compilation 
+## 4. Build and Compile
 
-In rom folder,
+### Build
 
  ```
 . build/envsetup.sh
 ccache -M 50G -F 0
 lunch treble_arm64_bN-ap2a-userdebug
-make systemimage -j$(nproc --all)
+make systemimage -j8
+
+# Note: Increate system swap size if having issue.
+# Note: Use -j8 or lower if having issue. Below is use all "16" for my system
+#make systemimage -j$(nproc --all)
  ```
 
 
-## Compress
+### Compress
 
 After compilation,
 If you want to compress the build, i recommend use [7-zip](https://aur.archlinux.org/packages/7-zip), for a fast and safe way
@@ -96,7 +104,7 @@ cd out/target/product/tdgsi_arm64_ab
    ```
 
 
-## Create VNDK Lite variant
+### Create VNDK Lite variant
 
 Copy the resulting system.img to the treble_adapter folder in rom
 Then,
@@ -106,7 +114,7 @@ sudo bash lite-adapter.sh 64 system.img
  ```
 
 
-## Troubleshoot
+## 5. Troubleshoot
  
 If you face any conflicts while applying patches, apply the patch manually
 

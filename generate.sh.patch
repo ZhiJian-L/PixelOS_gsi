@@ -1,0 +1,27 @@
+diff --git a/generate.sh b/generate.sh
+old mode 100644
+new mode 100755
+index 461eff1..55b0e5b
+--- a/generate.sh
++++ b/generate.sh
+@@ -15,7 +15,7 @@ fi
+ echo 'PRODUCT_MAKEFILES := \' > AndroidProducts.mk
+ 
+ for part in a ab;do
+-	for apps in vanilla gapps foss gapps-go;do
++	for apps in vanilla gapps foss gapps-go smthg;do
+ 		for arch in arm64 arm a64;do
+ 			for su in yes no;do
+ 				apps_suffix=""
+@@ -44,6 +44,11 @@ for part in a ab;do
+ 					apps_script=''
+ 					apps_name="vanilla"
+ 				fi
++				if [ "$apps" == "smthg" ];then
++					apps_suffix=""
++					apps_script=''
++					apps_name=""
++				fi
+ 				if [ "$arch" == "arm" ];then
+ 					vndk="vndk-binder32.mk"
+ 				fi
